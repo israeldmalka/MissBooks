@@ -1,0 +1,48 @@
+.book-preview {
+    background-color: rgb(18, 111, 139);
+    color: white;
+    outline: 1px solid black;
+    width: max-content;
+
+    padding: 1em;
+    margin-block: 1em;
+
+    position: relative;
+
+
+}
+
+.book-preview img {
+    display: block;
+    outline: 1px solid black;
+}
+
+.book-preview button {
+    outline: 1px solid black;
+    background-color: white;
+    border-radius: 1em;
+}
+
+.book-preview .select-button {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+}
+
+.book-preview .delete-button {
+    position: absolute;
+    bottom: 0.5em;
+    right: 0.5em;
+}
+
+.book-preview .title {
+    text-transform: capitalize;
+    font-size: 24px;
+}
+
+.book-preview .price {
+    outline: 1px solid black;
+    background-color: white;
+    color: black;
+    padding: 0.2em;
+}

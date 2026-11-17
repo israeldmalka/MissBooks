@@ -1,0 +1,11 @@
+.book-details {
+    background-color: rgb(18, 111, 139);
+    outline: 1px solid black;
+    width: max-content;
+    padding: 1em;
+    margin: 2em;
+
+
+    font-weight: bold;
+
+}

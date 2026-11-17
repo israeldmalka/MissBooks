@@ -1,0 +1,49 @@
+.book-filter {
+    background-color: rgb(18, 111, 139);
+    outline: 1px solid black;
+    padding: 0.3em 1em;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.book-filter * {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.book-filter form {
+
+}
+
+.book-filter label {
+    margin-inline: 0.5em;
+}
+
+.book-filter input {
+    margin-inline: 0.5em;
+
+}
+
+.book-filter button {
+    background-color: white;
+}
+
+@media (width < 900px) {
+    .book-filter {
+        display: grid;
+    }
+}
+
+@media (width < 750px) {
+    .book-filter form {
+        display: grid;
+        grid-template-columns: 100px 150px;
+        gap: 0.3em;
+    }
+    .book-filter button {
+        grid-column: 1 / span 2;
+        width: max-content;
+
+    }
+}
