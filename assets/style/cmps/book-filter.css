@@ -1,7 +1,8 @@
 .book-filter {
     background-color: rgb(18, 111, 139);
     outline: 1px solid black;
-    padding: 0.3em 1em;
+    padding: 0.5em 1em;
+    color: white;
 
     display: flex;
     justify-content: space-between;
@@ -13,37 +14,21 @@
 }
 
 .book-filter form {
-
+    display: flex;
+    align-items: center;
 }
 
-.book-filter label {
+.book-filter label, .book-filter input {
     margin-inline: 0.5em;
 }
 
-.book-filter input {
-    margin-inline: 0.5em;
-
-}
-
-.book-filter button {
-    background-color: white;
-}
-
-@media (width < 900px) {
+@media (width < 970px) {
     .book-filter {
-        display: grid;
+        flex-direction: column;
+        gap: 0.5em;
     }
-}
-
-@media (width < 750px) {
     .book-filter form {
-        display: grid;
-        grid-template-columns: 100px 150px;
-        gap: 0.3em;
-    }
-    .book-filter button {
-        grid-column: 1 / span 2;
-        width: max-content;
-
+        flex-direction: column;
+        gap: 0.5em;
     }
 }

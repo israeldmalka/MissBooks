@@ -1,13 +1,6 @@
-import { bookService } from "../services/book.service.js"
+const { Link } = ReactRouterDOM
 
-export function BookPreview({ book, onSetSelectedBookId, onBookRemoved }) {
-
-    function onRemoveBook(bookId) {
-        console.log('onRemoveBook(), bookId:', bookId)
-
-        const removedItem = bookService.deleteBook(bookId)
-        onBookRemoved(removedItem)
-    }
+export function BookPreview({ book, onRemoveBook }) {
 
     if (!book) return 'Loading...'
     return (
@@ -15,7 +8,7 @@ export function BookPreview({ book, onSetSelectedBookId, onBookRemoved }) {
             <p className="title">{book.title}</p>
             <img src={book.thumbnail} />
             <p className="price">{book.listPrice.amount} {book.listPrice.currencyCode}</p>
-            <button className="select-button" onClick={() => onSetSelectedBookId(book.id)}>Select</button>
+            <button className="select-button"><Link to={"/book/" + book.id}>Select</Link></button>
             <button className="delete-button" onClick={() => onRemoveBook(book.id)}>Delete</button>
         </section>
     )

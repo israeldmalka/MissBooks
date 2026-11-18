@@ -1,5 +1,7 @@
 const { useState, useEffect, useRef } = React
 
+const { Link } = ReactRouterDOM
+
 export function BookFilter({ filterBy, onSetFilterBy }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
@@ -17,10 +19,10 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
                 value = ''
             } else {
                 // from string to number (eg. from '12' to 12)
-                value = Number(value) 
+                value = Number(value)
             }
         }
-        setFilterByToEdit(prevFilterBy => ({...prevFilterBy, [field]: value}))
+        setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [field]: value }))
     }
 
     function onSubmitForm(ev) {
@@ -33,13 +35,22 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
         <section className="book-filter">
             <h2>Filter Books</h2>
             <form onSubmit={onSubmitForm}>
-                <label htmlFor="title">Book Title</label>
-                <input type="text" name="title" id="title" value={filterByToEdit.bookTitle} onChange={onHandleChange} />
 
-                <label htmlFor="maxPrice">Max Price</label>
-                <input type="number" name="maxPrice" id="maxPrice" value={filterByToEdit.maxPrice} onChange={onHandleChange} />
+                <div className="line">
+                    <label htmlFor="title">Book Title</label>
+                    <input type="text" name="title" id="title" value={filterByToEdit.bookTitle} onChange={onHandleChange} />
+                </div>
 
-                <button>Filter Results</button>
+                <div className="line">
+                    <label htmlFor="maxPrice">Max Price</label>
+                    <input type="number" name="maxPrice" id="maxPrice" value={filterByToEdit.maxPrice} onChange={onHandleChange} />
+                </div>
+
+                <div className="line">
+                    <button className="filter-results-btn" onClick={onSubmitForm}>Filter Results</button>
+                    <button className="add-new-book-btn"><Link to="/book/edit">Add a New Book</Link></button>
+                </div>
+
             </form>
         </section>
     )

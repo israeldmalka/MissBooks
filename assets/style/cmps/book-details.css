@@ -1,11 +1,38 @@
 .book-details {
     background-color: rgb(18, 111, 139);
     outline: 1px solid black;
-    width: max-content;
+    width: 500px;
     padding: 1em;
     margin: 2em;
 
+    display: grid;
+    gap: 1em;
+}
 
-    font-weight: bold;
+.book-details * {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;    
+}
 
+.book-details .text {
+    font-size: 16px;
+    color: white;
+}
+
+.book-details .buttons {
+    display: grid;
+    grid-auto-flow: column;
+}
+
+.book-details img {
+    outline: 1px solid black;
+
+    justify-self: center;
+}
+
+.book-details .price-high {
+    color: red;
+}
+
+.book-details .price-low {
+    color: lightgreen;
 }

@@ -1,31 +1,31 @@
-.book-edit {
+.book-edit * {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* the text color of the header and labels will be while
+while the text color of the inputs and buttons will be black */
+.book-edit header, .book-edit label {
+    color: white
+}
+
+.book-edit header {
+    grid-column: 1 / span 2;
 }
 
 .book-edit form {
-
     background-color: rgb(18, 111, 139);
     outline: 1px solid black;
-    width: max-content;
-    padding: 1em;
+    width: 500px;
+    padding: 2em;
     margin: 2em;
 
     display: grid;
     grid-template-columns: 150px 150px;
+    justify-content: center;
     gap: 1em;
-
-    font-weight: bold;
 }
 
 .book-edit form * {
     padding: 0.3em;
 }
 
-.book-edit form button {
-    background-color: white;
-    outline: 1px solid black;
-}
-
-.book-edit h2 {
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    grid-column: 1 / span 2;
-}

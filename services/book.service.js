@@ -27,7 +27,9 @@ function createBook(title, price, currencyCode, isOnSale) {
         },
 
         // every new book will come with this default image (a default generic book cover)
-        thumbnail: 'https://coding-academy.org/books-photos/6.jpg'
+        thumbnail: 'https://coding-academy.org/books-photos/6.jpg',
+
+        publishedDate: new Date().getFullYear()
     }
 
     gBooks = [...gBooks, book]
@@ -128,7 +130,8 @@ function _initBooks() {
     if (!storedData || storedData.length === 0) {
 
         // no books stored in cache, so create demo data instead
-        gBooks = _getDemoData()
+        // gBooks = _getDemoData()
+        gBooks = _createBooks()
 
         // save the books to the local storage
         storageService.saveToStorage(STORAGE_KEY, gBooks)
@@ -587,5 +590,32 @@ function _getDemoData() {
     return books
 }
 
-
+function _createBooks() {
+    const ctgs = ['Love', 'Fiction', 'Poetry', 'Computers', 'Religion']
+    const books = []
+    for (let i = 0; i < 20; i++) {
+        const book = {
+            id: utilService.makeId(),
+            title: utilService.makeLorem(2),
+            subtitle: utilService.makeLorem(4),
+            authors: [
+                utilService.makeLorem(1)
+            ],
+            publishedDate: utilService.getRandomIntInclusive(1950, 2024),
+            description: utilService.makeLorem(20),
+            pageCount: utilService.getRandomIntInclusive(20, 600),
+            categories: [ctgs[utilService.getRandomIntInclusive(0, ctgs.length - 1)]],
+            thumbnail: `http://coding-academy.org/books-photos/${i + 1}.jpg`,
+            language: "en",
+            listPrice: {
+                amount: utilService.getRandomIntInclusive(80, 500),
+                currencyCode: "EUR",
+                isOnSale: Math.random() > 0.7
+            }
+        }
+        books.push(book)
+    }
+    console.log('_createBooks() generated books:', books)
+    return books
+}
 

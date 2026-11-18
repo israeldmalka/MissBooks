@@ -1,5 +1,10 @@
 .app-header {
-    background-color: var(--clr1);
-    color: var(--clr1bg);
-    padding-block: 1em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(18, 111, 139);
+    color: white;
+    padding: 1em;
+}
+
+.app-header a {
+    margin-inline: 1em;
 }

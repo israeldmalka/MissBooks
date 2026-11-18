@@ -2,7 +2,9 @@ import { bookService } from "../services/book.service.js"
 
 const { useState, useEffect, useRef } = React
 
-export function BookEdit({ selectedBookId, onBookCreated, onBookUpdated, onCanceled }) {
+const { useParams, Link, useNavigate } = ReactRouterDOM
+
+export function BookEdit() {
 
     // The component serves for two functions
     // 1. to edit an existing book, if it receives a prop selectedBookId
@@ -16,11 +18,15 @@ export function BookEdit({ selectedBookId, onBookCreated, onBookUpdated, onCance
     const [currency, setCurrency] = useState('')
     const [isOnSale, setIsOnSale] = useState(false)
 
+    const { bookId } = useParams()
+
+    const navigate = useNavigate()
+
     useEffect(() => {
 
-        if (selectedBookId) {
+        if (bookId) {
             // case 1: we edit an existing book
-            const retrievedBook = bookService.getBook(selectedBookId)
+            const retrievedBook = bookService.getBook(bookId)
             setBook(retrievedBook)
 
             // the inputs will have the current values from the item
@@ -40,41 +46,27 @@ export function BookEdit({ selectedBookId, onBookCreated, onBookUpdated, onCance
     function onSubmitForm(ev) {
         ev.preventDefault()
 
-        if (selectedBookId) {
+        if (bookId) {
             // update the book with the new details from the input fields
-            let updatedItem = bookService.setBookTitle(selectedBookId, title)
-            updatedItem = bookService.setBookListPrice(selectedBookId, price, currency, isOnSale)
-            onBookUpdated(updatedItem)
+            let updatedItem = bookService.setBookTitle(bookId, title)
+            updatedItem = bookService.setBookListPrice(bookId, price, currency, isOnSale)
+            // onBookUpdated(updatedItem)
+            navigate('/book')
 
         } else {
             // create a new item with the details from the input fields
             const newItem = bookService.createBook(title, price, currency, isOnSale)
-            onBookCreated(newItem)
+            // onBookCreated(newItem)
+            navigate('/book')
         }
 
-    }
-
-    function onCancel() {
-        // if (mode === 'update') {
-        //     // case 1: we are editting an existing item and clicking cancel
-        //     // we set the selected book id to null and it sends us back to the main component
-        //     onSetSelectedBookId(null)
-
-        // } else if (mode === 'create') {
-        //     // case 2: we were creating a new item and then clicking cancel
-        //     // we call the callback function onCanceled which sets the flag isEdit and sends us back
-        //     // to understand better, see the conditional rendering in the component BookIndex
-        //     onCanceled()
-        // }
-
-        onCanceled()
     }
 
     return (
         <section className="book-edit">            
 
             <form onSubmit={onSubmitForm}>
-                <h2>{ (selectedBookId ? 'Edit the Book' : 'Add a New Book')}</h2>
+                <header>{ (bookId ? 'Edit the Book' : 'Add a New Book')}</header>
 
                 <label htmlFor="title">Title:</label>
                 <input type="text" name="title" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
@@ -89,7 +81,7 @@ export function BookEdit({ selectedBookId, onBookCreated, onBookUpdated, onCance
                 <input type="checkbox" name="isOnSale" id="isOnSale" checked={isOnSale} onChange={(e) => setIsOnSale(e.target.checked)} />
 
                 <button onClick={onSubmitForm}>Submit</button>
-                <button onClick={onCancel}>Cancel</button>
+                <button><Link to="/book">Cancel</Link></button>
             </form>
         </section>
     )
