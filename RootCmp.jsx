@@ -13,7 +13,7 @@ export function App() {
         <Router>
             <section className="app">
                 <header className="app-header main-layout">
-                    <h1>My Book Store</h1>
+                    <NavLink to="/book"><h1>My Book Store</h1></NavLink>
                     <NavLink to="/">Home</NavLink>
                     <NavLink to="/about">About</NavLink>
                     <NavLink to="/book">Explore Books</NavLink>

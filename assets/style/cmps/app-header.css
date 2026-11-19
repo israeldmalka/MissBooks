@@ -1,10 +1,15 @@
 .app-header {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
     background-color: rgb(18, 111, 139);
     color: white;
-    padding: 1em;
+    padding: 1em 2em;
+    border: 1px solid black;
 }
 
-.app-header a {
-    margin-inline: 1em;
+.app-header a:not(:first-of-type) {
+    margin-inline-start: 1em;
+}
+
+.app-header a:hover {
+    font-weight: bold;
 }

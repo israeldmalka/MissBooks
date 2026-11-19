@@ -1,5 +1,8 @@
 import { bookService } from "../services/book.service.js"
 
+import { eventBusService } from "../services/event-bus.service.js"
+import { UserMsg } from "./UserMsg.jsx"
+
 const { useState, useEffect, useRef } = React
 
 const { useParams, Link, useNavigate } = ReactRouterDOM
@@ -9,7 +12,7 @@ export function BookEdit() {
     // The component serves for two functions
     // 1. to edit an existing book, if it receives a prop selectedBookId
     // 2. to create a new book, if there is no selected book
-    
+
     const [book, setBook] = useState(null)
 
     // the input fields book title, price, currency code and is it on sale or not
@@ -48,25 +51,48 @@ export function BookEdit() {
 
         if (bookId) {
             // update the book with the new details from the input fields
-            let updatedItem = bookService.setBookTitle(bookId, title)
-            updatedItem = bookService.setBookListPrice(bookId, price, currency, isOnSale)
-            // onBookUpdated(updatedItem)
-            navigate('/book')
+            try {
+                let updatedItem = bookService.setBookTitle(bookId, title)
+                updatedItem = bookService.setBookListPrice(bookId, price, currency, isOnSale)
+
+                console.log('updated item:', updatedItem)
+
+                window.showSuccessMsg('Updated Item')
+
+            } catch (error) {
+                window.showErrorMsg('Failed to update item')
+            }
+
+            setTimeout(() => {
+                navigate('/book')
+            }, 1000)
 
         } else {
             // create a new item with the details from the input fields
-            const newItem = bookService.createBook(title, price, currency, isOnSale)
-            // onBookCreated(newItem)
-            navigate('/book')
+            try {
+                let createdItem = bookService.createBook(title, price, currency, isOnSale)
+                window.showSuccessMsg('Created Item')
+
+            } catch (error) {
+                window.showErrorMsg('Failed to create item')
+            }
+
+            setTimeout(() => {
+                navigate('/book')
+            }, 1000)
         }
 
     }
 
+    function onCancel() {
+        navigate('/book')
+    }
+
     return (
-        <section className="book-edit">            
+        <section className="book-edit">
 
             <form onSubmit={onSubmitForm}>
-                <header>{ (bookId ? 'Edit the Book' : 'Add a New Book')}</header>
+                <header>{(bookId ? 'Edit the Book' : 'Add a New Book')}</header>
 
                 <label htmlFor="title">Title:</label>
                 <input type="text" name="title" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
@@ -81,8 +107,10 @@ export function BookEdit() {
                 <input type="checkbox" name="isOnSale" id="isOnSale" checked={isOnSale} onChange={(e) => setIsOnSale(e.target.checked)} />
 
                 <button onClick={onSubmitForm}>Submit</button>
-                <button><Link to="/book">Cancel</Link></button>
+                <button onClick={onCancel}>Cancel</button>
             </form>
+
+            <UserMsg />
         </section>
     )
 }

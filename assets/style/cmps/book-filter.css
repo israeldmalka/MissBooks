@@ -9,10 +9,6 @@
     align-items: center;
 }
 
-.book-filter * {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
 .book-filter form {
     display: flex;
     align-items: center;

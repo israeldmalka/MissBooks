@@ -13,6 +13,9 @@
 .book-preview img {
     display: block;
     outline: 1px solid black;
+
+    width: 300px;
+    height: 400px;
 }
 
 .book-preview .select-button {
@@ -29,7 +32,7 @@
 
 .book-preview .title {
     text-transform: capitalize;
-    font-size: 24px;
+    font-size: 18px;
 }
 
 .book-preview .price {

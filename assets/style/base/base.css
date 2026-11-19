@@ -2,12 +2,14 @@
   box-sizing: border-box;
 }
 
-html {
-}
+html {}
 
 body {
   margin: 0;
   color: var(--gray3);
+
+  /* added by me, so that all texts in the page have this same font family */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 h1,

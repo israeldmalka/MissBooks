@@ -1,29 +1,21 @@
 .book-details {
     background-color: rgb(18, 111, 139);
     outline: 1px solid black;
-    width: 500px;
+
+    width: 600px;
     padding: 1em;
-    margin: 2em;
+    margin: 1em;
 
     display: grid;
     gap: 1em;
-}
 
-.book-details * {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;    
-}
-
-.book-details .text {
     font-size: 16px;
     color: white;
 }
 
-.book-details .buttons {
-    display: grid;
-    grid-auto-flow: column;
-}
 
 .book-details img {
+    display: block;
     outline: 1px solid black;
 
     justify-self: center;
@@ -35,4 +27,13 @@
 
 .book-details .price-low {
     color: lightgreen;
+}
+
+.book-details .add-review .line *{
+    margin-inline-end: 0.5em;
+}
+
+.book-details .action-buttons {
+    display: grid;
+    grid-auto-flow: column;
 }

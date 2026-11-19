@@ -1,6 +1,8 @@
 import { bookService } from "../services/book.service.js"
 import { BookFilter } from "../cmps/BookFilter.jsx"
 import { BookList } from "../cmps/BookList.jsx"
+import { eventBusService } from "../services/event-bus.service.js"
+import { UserMsg } from "../cmps/UserMsg.jsx"
 
 const { useState, useEffect } = React
 
@@ -34,7 +36,8 @@ export function BookIndex() {
     // after a book was deleted, update the UI with a new list of books, without the deleted item
     function onRemoveBook(bookId) {
         bookService.deleteBook(bookId)
-        setBooks(prevBooks => prevBooks.filter(book => book.id !== bookId))
+        setBooks(prevBooks => prevBooks.filter(book => book.id !== bookId))        
+        window.showSuccessMsg('Removed Item')
     }
 
     if (!books) return 'Loading...'
@@ -43,10 +46,12 @@ export function BookIndex() {
             <BookFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
             <BookList books={books} onRemoveBook={onRemoveBook}/>
 
+            <UserMsg />
+
             {/* for debugging purposes, show the books data at the bottom of the page */}
-            <pre>
+            {/* <pre>
                 {JSON.stringify(books, null, 2)}
-            </pre>
+            </pre> */}
 
         </section>
     )
